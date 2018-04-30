@@ -5,11 +5,20 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"sync"
 )
 
 var uuidStorage map[string]bool
 var mutex *sync.Mutex
+
+func determineListenAddress() (string, error) {
+	port := os.Getenv("PORT")
+	if port == "" {
+		return "", fmt.Errorf("$PORT not set")
+	}
+	return ":" + port, nil
+}
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 	// http:host/uuid
@@ -49,13 +58,17 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	addr, err := determineListenAddress()
+	if err != nil {
+		log.Fatal(err)
+	}
 	// Init UUID Storage and Mutex
 	uuidStorage = make(map[string]bool)
 	mutex = &sync.Mutex{}
 	http.HandleFunc("/", rootHandler)
 	http.HandleFunc("/read", readHandler)
 	log.Printf("Server up and running on port 9100")
-	log.Fatal(http.ListenAndServe(":9100", nil))
+	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
 func jsonResponse(w http.ResponseWriter, code int, data map[string]interface{}) {
