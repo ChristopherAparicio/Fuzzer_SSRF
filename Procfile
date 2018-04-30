@@ -1,1 +1,1 @@
-wbin/main
+web: fuzzer-ssrf
