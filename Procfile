@@ -1,1 +1,1 @@
-web: fuzzer-ssrf
+web: main
