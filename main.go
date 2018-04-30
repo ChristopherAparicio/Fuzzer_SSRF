@@ -67,7 +67,7 @@ func main() {
 	mutex = &sync.Mutex{}
 	http.HandleFunc("/", rootHandler)
 	http.HandleFunc("/read", readHandler)
-	log.Printf("Server up and running on port 9100")
+	log.Printf("Server up and running on port ", addr)
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
