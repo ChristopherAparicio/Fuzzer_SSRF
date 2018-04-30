@@ -50,7 +50,7 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 			"uuid":    uuid,
 			"present": false,
 		}
-		jsonResponse(w, 200, data)
+		jsonResponse(w, 404, data)
 		return
 	}
 	jsonResponse(w, 400, nil)
