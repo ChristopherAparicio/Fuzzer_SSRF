@@ -1,1 +1,1 @@
-web: bin/fuzzerssrf
+web: bin/fuzzer_ssrf
