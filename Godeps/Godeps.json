@@ -1,9 +1,9 @@
 {
-	"ImportPath": "github.com/ChristopherAparicio/Fuzzer_SSRF",
+	"ImportPath": "github.com/ChristopherAparicio/fuzzer_ssrf",
 	"GoVersion": "go1.9",
 	"GodepVersion": "v80",
 	"Packages": [
-		"."
+		"./..."
 	],
 	"Deps": []
 }
